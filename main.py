@@ -3,28 +3,44 @@ import numpy as np
 from numpy.linalg import inv 
 from numpy.polynomial.polynomial import Polynomial 
 
-SIZE = 5
+
+SIZE = 30
+
 S = [i for i in range(SIZE)]
-A = [random.uniform(0, 1) for _ in range(SIZE)]
+
+ 
+A_0 = [random.uniform(0, 1) for _ in range(SIZE)]
+suma_A = sum(A_0)
+A = [A_0[x]/suma_A for x in range(SIZE-1)]
+A.append(1-sum(A))
+
+
+P = []
+for i in range (SIZE):
+    fila = [random.uniform(0, 1) for _ in range(SIZE)]
+    sumaFila = sum(fila)
+    filaNormal = [fila[x]/sumaFila for x in range(SIZE-1)]
+    filaNormal.append(1-sum(filaNormal))
+
+    P.append(filaNormal)
+
+
 U = [random.uniform(0, 1) for _ in range(SIZE)]
+X = [0 for _ in range(SIZE)]
 
-print(S)
-print(U)
 
-for k in range(-1):
-    print(A[k])
 
-print("CAca")
 
-def g(u: float) -> float:
+def g (u: float) -> float:
     suma = 0
     for i in range(SIZE):
 
         inferior = 0
-        for k in range(i-1):
-            inferior += A[k]
-            
+        for k in range(i):
+            inferior += A[k]   
         superior = inferior + A[i]
+
+        #print("(" + str(inferior) + "," + str(superior) + "]")
 
         if (u > inferior) and (u <= superior):
             suma += i
@@ -33,7 +49,31 @@ def g(u: float) -> float:
 
 
 
+def f (i: float, u:float):
+
+    suma = 0
+    for j in range(SIZE):
+
+        inferior = 0
+        for k in range(j):
+            inferior += P[i][k]
+        superior = inferior + P[i][j]
+
+        #print("(" + str(inferior) + "," + str(superior) + "]")
+
+        if (u > inferior) and (u <= superior):
+            suma += j
+    return suma
+
+
+
+
 if __name__ == '__main__':
 
-    h = random.uniform(0, 1)
-    print(h)
+    X[0] = g(U[0])
+
+    for n in range(SIZE-1):  
+        X[n+1] = f(X[n], U[n+1])
+
+    print(X)
+
