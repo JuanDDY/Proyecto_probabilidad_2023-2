@@ -4,7 +4,7 @@ Este codigo carga el archivo del grafo y lo vuelve un grafo con matriz de abyace
 """
 
 def cargar():
-    archivo = open("grafo60.txt", "r")
+    archivo = open("max-cut\grafo60.txt", "r")
   
     cantidadNodos, cantidadVertices = archivo.readline().split()
     grafo = [[0 for _ in range(int(cantidadNodos))] for _ in range(int(cantidadNodos))]
