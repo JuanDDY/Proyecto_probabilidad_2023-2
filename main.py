@@ -1,10 +1,13 @@
 import random
 import numpy as np
-from numpy.linalg import inv 
-from numpy.polynomial.polynomial import Polynomial 
+from numpy.linalg import inv
+import lecturaGrafo as lg
 
 
-SIZE = 30
+
+tamanioSucecion = 40
+
+SIZE = 10
 
 S = [i for i in range(SIZE)]
 
@@ -25,8 +28,8 @@ for i in range (SIZE):
     P.append(filaNormal)
 
 
-U = [random.uniform(0, 1) for _ in range(SIZE)]
-X = [0 for _ in range(SIZE)]
+U = [random.uniform(0, 1) for _ in range(tamanioSucecion)]
+X = [0 for _ in range(tamanioSucecion)]
 
 
 
@@ -72,8 +75,11 @@ if __name__ == '__main__':
 
     X[0] = g(U[0])
 
-    for n in range(SIZE-1):  
+    for n in range(tamanioSucecion -1):  
         X[n+1] = f(X[n], U[n+1])
 
     print(X)
+
+    grafo = lg.cargar()
+
 
