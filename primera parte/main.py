@@ -1,11 +1,8 @@
 import random
 import numpy as np
 from numpy.linalg import inv
-import lecturaGrafo as lg
 
-
-
-tamanioSucecion = 40
+TAMANIO_SUCESION = 40
 
 SIZE = 10
 
@@ -28,8 +25,8 @@ for i in range (SIZE):
     P.append(filaNormal)
 
 
-U = [random.uniform(0, 1) for _ in range(tamanioSucecion)]
-X = [0 for _ in range(tamanioSucecion)]
+U = [random.uniform(0, 1) for _ in range(TAMANIO_SUCESION)]
+X = [0 for _ in range(TAMANIO_SUCESION)]
 
 
 
@@ -75,11 +72,11 @@ if __name__ == '__main__':
 
     X[0] = g(U[0])
 
-    for n in range(tamanioSucecion -1):  
+    for n in range(TAMANIO_SUCESION -1):  
         X[n+1] = f(X[n], U[n+1])
 
     print(X)
 
-    grafo = lg.cargar()
+ 
 
 

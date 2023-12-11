@@ -21,7 +21,7 @@ def getTime():
 
 start_time = getTime()
 
-ITERACIONES = 1000000
+ITERACIONES = 10000
 print("iteraciones = " + str(ITERACIONES))
 
 def goemans_williamson_max_cut(adjacency_matrix):
